@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Get to Know Joel";
+}
+
+@* // This page provides an overview of Joel's projects and interests, including his comedy work and podcast. *@
+<div class="cardish cardish--narrow text-center">
+
+    <h1 class="mb-2">@ViewData["Title"]</h1>
+    <p class="text-muted mb-4">
+        Learn more about Joel and the projects he's involved in.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+        <!-- Quick Wits -->
+        <div class="col-md-6">
+            <div class="info-box p-4 h-100">
+                <h3 class="mb-2">Quick Wits Comedy</h3>
+                <p class="text-muted small mb-3">
+                    Live comedy performances and events.
+                </p>
+                <a href="https://www.qwcomedy.com/"
+                   target="_blank"
+                   class="btn btn-primary px-4">
+                    Visit Site
+                </a>
+            </div>
+        </div>
+
+        <!-- Baconsale -->
+        <div class="col-md-6">
+            <div class="info-box p-4 h-100">
+                <h3 class="mb-2">Baconsale</h3>
+                <p class="text-muted small mb-3">
+                    Pop culture, movies, and fun conversations.
+                </p>
+
+                <a href="https://baconsale.com/" target="_blank">
+                    <img src="~/img/BaconsaleKate.jpg"
+                         class="img-fluid rounded mb-3 shadow-sm"
+                         alt="Baconsale Podcast" />
+                </a>
+
+                <div>
+                    <a href="https://baconsale.com/"
+                       target="_blank"
+                       class="btn btn-primary px-4">
+                        Visit Site
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,287 @@
+/* =========================
+   Mission06_Morgan - Site CSS (Light Theme)
+   ========================= */
+
+/* Theme tokens */
+:root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --border: rgba(15, 23, 42, .10);
+    --text: #0f172a; /* slate-900 */
+    --muted: #475569; /* slate-600 */
+
+    --brand: #2563eb; /* blue-600 */
+    --brand-2: #7c3aed; /* violet-600 */
+    --danger: #dc2626; /* red-600 */
+
+    --radius: 16px;
+    --shadow-sm: 0 8px 18px rgba(15, 23, 42, .08);
+    --shadow: 0 14px 34px rgba(15, 23, 42, .10);
+}
+
+/* Base */
+html {
+    font-size: 16px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.5;
+    margin-bottom: 70px; /* keep footer spacing */
+    padding-bottom: 80px; /* space so content isn't hidden behind footer */
+}
+
+a {
+    color: var(--brand);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: var(--brand-2);
+        text-decoration: underline;
+    }
+
+/* Layout container */
+.container {
+    max-width: 980px;
+}
+
+/* =========================
+   Navbar
+   ========================= */
+.navbar {
+    background: rgba(255,255,255,.92) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border) !important;
+    box-shadow: 0 6px 18px rgba(15,23,42,.06);
+}
+
+    .navbar .navbar-brand {
+        font-weight: 800;
+        letter-spacing: .2px;
+        color: var(--text) !important;
+    }
+
+    .navbar .nav-link {
+        color: var(--muted) !important;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: .45rem .75rem;
+    }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: var(--text) !important;
+            background: rgba(37,99,235,.08);
+            text-decoration: none;
+        }
+
+/* =========================
+   Card component
+   ========================= */
+.cardish {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 26px;
+    margin: 18px auto;
+}
+
+    /* Center headings/text inside the card by default */
+    .cardish h1,
+    .cardish h2,
+    .cardish h3,
+    .cardish p {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    /* BUT: keep form content aligned nicely */
+    .cardish form,
+    .cardish .form-group,
+    .cardish .form-floating,
+    .cardish .row {
+        text-align: left;
+    }
+
+/* Optional: narrower cards for nicer presentation pages */
+.cardish--narrow {
+    max-width: 720px;
+}
+
+/* =========================
+   Typography
+   ========================= */
+h1 {
+    font-size: 2rem;
+    font-weight: 850;
+    letter-spacing: -.4px;
+    margin-bottom: .75rem;
+}
+
+h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -.2px;
+    margin-bottom: .5rem;
+}
+
+p {
+    color: var(--muted);
+}
+
+/* =========================
+   Forms
+   ========================= */
+label {
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.form-control, select, textarea {
+    background: #ffffff !important;
+    color: var(--text) !important;
+    border: 1px solid rgba(15,23,42,.14) !important;
+    border-radius: 12px !important;
+    padding: 10px 12px !important;
+}
+
+    .form-control::placeholder {
+        color: rgba(71,85,105,.65) !important;
+    }
+
+    .form-control:focus, select:focus, textarea:focus {
+        border-color: rgba(37,99,235,.55) !important;
+        box-shadow: 0 0 0 .25rem rgba(37,99,235,.15) !important;
+        outline: none;
+    }
+
+/* Validation */
+.field-validation-error,
+.validation-summary-errors {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.input-validation-error {
+    border-color: rgba(220,38,38,.55) !important;
+    box-shadow: 0 0 0 .25rem rgba(220,38,38,.12) !important;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.btn-primary {
+    background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 800;
+    padding: .55rem .95rem;
+    box-shadow: 0 10px 22px rgba(37,99,235,.16);
+}
+
+    .btn-primary:hover {
+        filter: brightness(1.03);
+        transform: translateY(-1px);
+    }
+
+.btn-outline-secondary {
+    border-radius: 12px !important;
+    font-weight: 700;
+}
+
+/* Remove ugly focus glow from bootstrap defaults and use ours */
+.btn:focus, .btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 .25rem rgba(37,99,235,.15) !important;
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer.footer {
+    background: rgba(255,255,255,.92);
+    border-top: 1px solid var(--border);
+    color: rgba(71,85,105,.85) !important;
+}
+
+/* =========================
+   Small “movie vibe” utility (optional)
+   ========================= */
+/* Put a subtle badge on headings if you want */
+.badgeish {
+    display: inline-block;
+    padding: .25rem .6rem;
+    border-radius: 999px;
+    background: rgba(37,99,235,.10);
+    color: var(--brand);
+    font-weight: 800;
+    font-size: .85rem;
+}
+
+footer.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1030; /* above content */
+}
+
+
+/* Sticky footer layout (NOT fixed/absolute) */
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* remove any old spacing hacks */
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Make main take remaining space */
+main {
+    flex: 1 0 auto;
+}
+
+/* Force footer to behave normally */
+footer.footer {
+    position: static !important;
+    width: 100%;
+    margin-top: auto; /* pushes footer to bottom on short pages */
+}
+/* Make the form feel cleaner */
+.movie-form .form-label {
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.movie-form .form-control,
+.movie-form .form-select {
+    min-height: 44px;
+}
+
+/* Give inputs a little nicer shape (still Bootstrap-friendly) */
+.movie-form .form-control,
+.movie-form .form-select {
+    border-radius: 12px;
+}
+
+/* Keep only the headings centered; form fields stay left-aligned */
+.cardish h1, .cardish p {
+    text-align: center;
+}
+
+.cardish form {
+    text-align: left;
+}
