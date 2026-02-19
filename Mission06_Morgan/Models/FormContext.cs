@@ -11,6 +11,7 @@ namespace Mission06_Morgan.Models
         public FormContext(DbContextOptions<FormContext> options) : base(options) //Constructor
         {
         }
-        public DbSet<movieFormModel> movies { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

@@ -1,0 +1,43 @@
+﻿@model List<Mission06_Morgan.Models.Movie>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Rating</th>
+            <th>Edited?</th>
+            <th>Lent To</th>
+            <th>Copied to Plex?</th>
+            <th>Notes</th>
+            <th></th>
+        </tr>
+
+    @foreach (var movie in Model)
+    {
+        <tr>
+            <td>@(movie.Category != null ? movie.Category.CategoryName : "")</td>
+            <td>@movie.Title</td>
+            <td>@movie.Year</td>
+            <td>@movie.Director</td>
+            <td>@movie.Rating</td>
+                <td>@(movie.Edited == true ? "Yes" : "No")</td>
+            <td>@movie.LentTo</td>
+            <td>@(movie.CopiedToPlex ? "Yes" : "No")</td>
+            <td>@movie.Notes</td>
+            <td>
+                <a class="btn btn-sm btn-primary"
+                   asp-action="Edit"
+                   asp-route-id="@movie.MovieId">Edit</a>
+
+                <a class="btn btn-sm btn-danger"
+                   asp-action="Delete"
+                   asp-route-id="@movie.MovieId">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>

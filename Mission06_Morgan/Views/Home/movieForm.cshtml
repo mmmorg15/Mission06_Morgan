@@ -1,15 +1,13 @@
-﻿@model Mission06_Morgan.Models.movieFormModel
+﻿@model Mission06_Morgan.Models.Movie
 
 @{
     ViewData["Title"] = "Fill out the Movie Form";
 }
- @* This page contains a form for users to submit new movies to the collection. It includes validation and user-friendly input fields. *@
+
 <div class="cardish cardish--narrow">
     <h1 class="mb-2">@ViewData["Title"]</h1>
     <p class="text-muted mb-4 text-center">Add a movie to the collection.</p>
 
-
-    @* // The form uses ASP.NET Core's tag helpers to bind to the movieFormModel and includes validation messages for each field. *@
     <form asp-action="movieForm" method="post" class="movie-form">
 
         <div asp-validation-summary="All" class="text-danger mb-3"></div>
@@ -17,9 +15,16 @@
         <div class="row g-3">
 
             <div class="col-md-6">
-                <label asp-for="Category" class="form-label"></label>
-                <input asp-for="Category" class="form-control" placeholder="Action, Comedy..." />
-                <span asp-validation-for="Category" class="text-danger small"></span>
+                <label asp-for="CategoryId" class="form-label">Category</label>
+                <select asp-for="CategoryId" class="form-select">
+                    <option value="">Select a category</option>
+                    @foreach (var c in ViewBag.Categories)
+                    {
+                        <option value="@c.CategoryId">@c.CategoryName</option>
+                    }
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger small"></span>
+
             </div>
 
             <div class="col-md-6">

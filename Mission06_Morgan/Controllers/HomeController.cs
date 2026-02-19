@@ -28,32 +28,111 @@ namespace Mission06_Morgan.Controllers
             return View();
         }
 
-        // This action method returns the view for the movie form page of the application when a GET request is made. It allows users to access the form to submit movie information
+
         [HttpGet]
         public IActionResult movieForm()
         {
-            return View();
+            ViewBag.Categories = _context.Categories.ToList();
+            return View(new Movie());
         }
 
-        // This action method handles the submission of the movie form when a POST request is made. It checks if the submitted model is valid, and if so, it adds the movie information to the database and saves the changes. If the model is not valid, it returns the view with the response model to show validation errors
+
+       
+
+        [HttpPost]
+        public IActionResult movieForm(Movie response)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = _context.Categories
+                    .OrderBy(c => c.CategoryName)
+                    .ToList();
+                return View(response);
+            }
+
+
+            _context.Movies.Add(response); // add record to the database
+            _context.SaveChanges(); // save the changes to the database
+            return View("Confirmation", response);
+
+
+        }
+
+        public IActionResult MovieTable()
+        {
+            var movies = _context.Movies
+                .Include(m => m.Category)
+                .OrderBy(m => m.Title)
+                .ToList();
+            return View(movies);
+        }
+
+        //Edit Get
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.MovieId == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Categories = _context.Categories
+                .OrderBy(c => c.CategoryName)
+                .ToList();
+            return View(movie);
+        }
+
+        // Edit Post
+        [HttpPost]
+        public IActionResult Edit(Movie UpdatedMovie)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = _context.Categories
+                    .OrderBy(c => c.CategoryName)
+                    .ToList();
+                return View(UpdatedMovie);
+            }
+            _context.Movies.Update(UpdatedMovie);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieTable");
+        }
+
+        // Delete Get
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var movie = _context.Movies
+                .Include(m => m.Category)
+                .SingleOrDefault(m => m.MovieId == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
+        }
+
+        // Delete Post
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int movieId)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.MovieId == movieId);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieTable");
+        }
+
+      
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        [HttpPost]
-        public IActionResult movieForm(movieFormModel response)
-        {
-            if (!ModelState.IsValid) // check if the model state is valid
-                return View(response); // if not, return the view with the response model to show validation errors
-
-                _context.movies.Add(response); // add record to the database
-                _context.SaveChanges(); // save the changes to the database
-                return View("Confirmation", response);
-            
-            
-        }
-
     }
 }
