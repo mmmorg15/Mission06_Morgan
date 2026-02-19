@@ -3,9 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mission06_Morgan.Models
 {
-    // This class represents the model for the movie form in the application. It contains properties that correspond to the fields in the form, such as MovieID, Category, Title, Year, Director, Rating, Edited, LentTo, and Notes. The properties are decorated with data annotations to specify validation rules and requirements for each field
+    
     public class Movie
     {
+        // This class represents the model for the movies in the application. 
         [Key]
         public int MovieId { get; set; }
 

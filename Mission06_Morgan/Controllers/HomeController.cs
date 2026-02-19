@@ -28,7 +28,7 @@ namespace Mission06_Morgan.Controllers
             return View();
         }
 
-
+        // This action method returns the view for the movie form, which allows users to submit information about a movie. It also retrieves the list of categories from the database and passes it to the view using ViewBag
         [HttpGet]
         public IActionResult movieForm()
         {

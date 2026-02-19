@@ -2,6 +2,7 @@
 
 namespace Mission06_Morgan.Models
 {
+    // This class represents the model for the categories in the application. 
     public class Category
     {
         [Key]
