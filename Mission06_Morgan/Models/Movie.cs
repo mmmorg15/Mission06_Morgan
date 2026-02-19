@@ -28,8 +28,9 @@ namespace Mission06_Morgan.Models
 
         public string? LentTo { get; set; }
 
-        [Required]
-        public bool CopiedToPlex { get; set; }
+        [Required(ErrorMessage = "Please enter if Copied to Plex")]
+
+        public bool? CopiedToPlex { get; set; }
 
         [StringLength(25)]
         public string? Notes { get; set; }

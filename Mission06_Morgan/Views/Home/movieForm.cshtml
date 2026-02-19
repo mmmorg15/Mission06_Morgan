@@ -74,6 +74,16 @@
             </div>
 
             <div class="col-md-6">
+                <label asp-for="CopiedToPlex" class="form-label"></label>
+                <select asp-for="CopiedToPlex" class="form-select">
+                    <option value="">Select an option</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <span asp-validation-for="CopiedToPlex" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
                 <label asp-for="Notes" class="form-label"></label>
                 <input asp-for="Notes" class="form-control" maxlength="25" placeholder="Optional (max 25 characters)" />
                 <span asp-validation-for="Notes" class="text-danger small"></span>

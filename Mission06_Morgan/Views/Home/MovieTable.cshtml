@@ -1,43 +1,75 @@
 ﻿@model List<Mission06_Morgan.Models.Movie>
 
+@{
+    ViewData["Title"] = "Movie Collection";
+}
 
-<table>
-    <thead>
-        <tr>
-            <th>Category</th>
-            <th>Title</th>
-            <th>Year</th>
-            <th>Director</th>
-            <th>Rating</th>
-            <th>Edited?</th>
-            <th>Lent To</th>
-            <th>Copied to Plex?</th>
-            <th>Notes</th>
-            <th></th>
-        </tr>
+<div class="cardish">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+        <div>
+            <h2 class="mb-0">Joel Hilton Movie Collection</h2>
+            <p class="text-muted mb-0">View, edit, or delete movies in the collection.</p>
+        </div>
 
-    @foreach (var movie in Model)
-    {
-        <tr>
-            <td>@(movie.Category != null ? movie.Category.CategoryName : "")</td>
-            <td>@movie.Title</td>
-            <td>@movie.Year</td>
-            <td>@movie.Director</td>
-            <td>@movie.Rating</td>
-                <td>@(movie.Edited == true ? "Yes" : "No")</td>
-            <td>@movie.LentTo</td>
-            <td>@(movie.CopiedToPlex ? "Yes" : "No")</td>
-            <td>@movie.Notes</td>
-            <td>
-                <a class="btn btn-sm btn-primary"
-                   asp-action="Edit"
-                   asp-route-id="@movie.MovieId">Edit</a>
+        <a class="btn btn-primary" asp-action="movieForm">+ Add Movie</a>
+    </div>
 
-                <a class="btn btn-sm btn-danger"
-                   asp-action="Delete"
-                   asp-route-id="@movie.MovieId">Delete</a>
-            </td>
-        </tr>
-    }
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle mb-0 movie-table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th class="text-center">Year</th>
+                    <th>Director</th>
+                    <th class="text-center">Rating</th>
+                    <th class="text-center">Edited</th>
+                    <th>Lent To</th>
+                    <th class="text-center">Plex</th>
+                    <th>Notes</th>
+                    <th class="text-end" style="width: 180px;">Actions</th>
+                </tr>
+            </thead>
 
-</table>
+            <tbody>
+                @foreach (var movie in Model)
+                {
+                    <tr>
+                        <td>@(movie.Category != null ? movie.Category.CategoryName : "")</td>
+                        <td class="fw-semibold">@movie.Title</td>
+                        <td class="text-center">@movie.Year</td>
+                        <td>@movie.Director</td>
+                        <td class="text-center">@movie.Rating</td>
+
+                        <td class="text-center">
+                            <span class="badge rounded-pill @(movie.Edited == true ? "bg-success" : "bg-secondary")">
+                                @(movie.Edited == true ? "Yes" : "No")
+                            </span>
+                        </td>
+                        
+
+                        <td>@movie.LentTo</td>
+
+                        <td class="text-center">
+                            <span class="badge rounded-pill @(movie.CopiedToPlex == true ? "bg-success" : "bg-secondary")">
+                                @(movie.CopiedToPlex == true ? "Yes" : "No")
+                            </span>
+                        </td>
+
+                        <td class="text-truncate" style="max-width: 220px;">@movie.Notes</td>
+
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-primary me-1"
+                               asp-action="Edit"
+                               asp-route-id="@movie.MovieId">Edit</a>
+
+                            <a class="btn btn-sm btn-outline-danger"
+                               asp-action="Delete"
+                               asp-route-id="@movie.MovieId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
